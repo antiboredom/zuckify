@@ -1,0 +1,56 @@
+<html>
+<title>Zuckifier</title>
+
+<head>
+  <style>
+    body {
+      max-width: 900px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      margin: 10px 0px;
+      height: 500px;
+      padding: 10px;
+    }
+    body,
+    input,
+    textarea,
+    button {
+      font-size: 16px;
+      font-family: "Georgia", sans-serif;
+    }
+    #output {
+      white-space: pre-wrap;
+      margin: 10px 0px;
+    }
+    h1 {
+      margin: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Zuckifier</h1>
+  <textarea id="text"></textarea>
+  <div style="text-align: center">
+    <input type="text" id="replacer" placeholder="Word to insert" value="">
+    <input type="number" id="thresh" placeholder="%" min="0" max="100" value="50" size="3">
+    <button id="submit">Zuckify</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script src="rita-full.min.js"></script>
+  <script src="zuckify.js"></script>
+  <script>
+    document.getElementById('submit').addEventListener('click', function(e) {
+      e.preventDefault();
+      var text = zuckify(document.getElementById('text').value, document.getElementById('replacer').value, (100 - (+document.getElementById('thresh').value))/100);
+      document.getElementById('output').innerHTML = text;
+    });
+  </script>
+</body>
+
+</html>
